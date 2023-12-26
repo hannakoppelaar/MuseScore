@@ -29,6 +29,8 @@ class Sequencer {
       virtual ~Sequencer() {}
 
       virtual void sendEvent(const NPlayEvent&) = 0;
+      virtual void startNote(const NPlayEvent&) = 0;
+      virtual void startNote(const NPlayEvent&, int) = 0;
       virtual void startNote(int channel, int, int, double nt) = 0;
       virtual void startNote(int channel, int, int, int, double nt) = 0;
       virtual void playMetronomeBeat(BeatType type) = 0;

@@ -4822,7 +4822,11 @@ void MuseScore::play(Element* e, int pitch) const
             if (cc != -1)
                   seq->sendEvent(NPlayEvent(ME_CONTROLLER, channel, cc, 80));
 
-            seq->startNote(channel, pitch, 80, MScore::defaultPlayDuration, masterNote->tuning());
+            //seq->startNote(channel, pitch, 80, MScore::defaultPlayDuration, masterNote->tuning());
+            NPlayEvent *event = new NPlayEvent(ME_NOTEON, channel, pitch, 80);
+            event->setNote(masterNote);
+            event->setTuning(masterNote->tuning());
+            seq->startNote(*event, MScore::defaultPlayDuration);
             }
       }
 

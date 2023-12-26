@@ -1264,21 +1264,31 @@ void Seq::seekRT(int utick)
 //   startNote
 //---------------------------------------------------------
 
-void Seq::startNote(int channel, int pitch, int velo, double nt)
-      {
-      if (state != Transport::STOP && state != Transport::PLAY)
+    void Seq::startNote(const NPlayEvent& ev) {
+        if (state != Transport::STOP && state != Transport::PLAY)
             return;
-      NPlayEvent ev(ME_NOTEON, channel, pitch, velo);
-      ev.setTuning(nt);
-      sendEvent(ev);
-      }
+        sendEvent(ev);
+    }
 
-void Seq::startNote(int channel, int pitch, int velo, int duration, double nt)
-      {
-      stopNotes();
-      startNote(channel, pitch, velo, nt);
-      startNoteTimer(duration);
-      }
+    void Seq::startNote(const NPlayEvent& ev, int duration) {
+        stopNotes();
+        startNote(ev);
+        startNoteTimer(duration);
+    }
+
+    void Seq::startNote(int channel, int pitch, int velo, double nt) {
+        if (state != Transport::STOP && state != Transport::PLAY)
+            return;
+        NPlayEvent ev(ME_NOTEON, channel, pitch, velo);
+        ev.setTuning(nt);
+        sendEvent(ev);
+    }
+
+    void Seq::startNote(int channel, int pitch, int velo, int duration, double nt) {
+        stopNotes();
+        startNote(channel, pitch, velo, nt);
+        startNoteTimer(duration);
+    }
 
 //---------------------------------------------------------
 //   playMetronomeBeat
@@ -1566,8 +1576,28 @@ void Seq::putEvent(const NPlayEvent& event, unsigned framePos)
       _synti->play(event, syntiIdx);
 
       // midi
-      if (_driver != 0 && (cachedPrefs.useJackMidi || cachedPrefs.useAlsaAudio || cachedPrefs.usePortAudio))
-            _driver->putEvent(event, framePos);
+      if (_driver != 0 && (cachedPrefs.useJackMidi || cachedPrefs.useAlsaAudio || cachedPrefs.usePortAudio)) {
+          if (event.type() == ME_NOTEON) {
+              if (event.note() != nullptr) {
+                  // Send the accidental type and tpc in CC 16 to 18 before each "note on"
+                  // NOTE: MIDI CC values have 7 bits, whereas the accidental type consists of 8 bits.
+                  // We signal whether the most significant bit is 0 or 1 by using cc 16 or 17 respectively
+                  unsigned char accidental = (unsigned char)event.note()->accidentalType();
+                  int accidentalCc = 16;
+                  if (accidental > 127) {
+                    // signal that the leftmost bit is 1 by using different cc number and only retain the 7 lower bits
+                    accidental &= 127;
+                    accidentalCc = 17;
+                  }
+                  NPlayEvent *myCcEvent = new NPlayEvent(ME_CONTROLLER, event.channel(), accidentalCc, accidental);
+                  _driver->putEvent(*myCcEvent, framePos);
+                  int tpc = (int)event.note()->tpc();
+                  myCcEvent = new NPlayEvent(ME_CONTROLLER, event.channel(), 18, tpc);
+                  _driver->putEvent(*myCcEvent, framePos);
+              }
+          }
+          _driver->putEvent(event, framePos);
+        }
       }
 
 //---------------------------------------------------------
