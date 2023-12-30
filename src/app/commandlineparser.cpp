@@ -151,6 +151,9 @@ void CommandLineParser::init()
                                           "Check an audio plugin for compatibility with the application and register it", "path"));
     m_parser.addOption(QCommandLineOption("register-failed-audio-plugin", "Register an incompatible audio plugin", "path"));
 
+    // Tuning
+    m_parser.addOption(QCommandLineOption("tuning-file", "Apply tuning from the supplied tuning file", "path"));
+
     // Internal
     m_parser.addOption(internalCommandLineOption("score-display-name-override",
                                                  "Display name to be shown in splash screen for the score that is being opened", "name"));
@@ -261,6 +264,11 @@ void CommandLineParser::parse(int argc, char** argv)
         m_audioPluginRegistration.pluginPath = fromUserInputPath(m_parser.value("register-failed-audio-plugin"));
         m_audioPluginRegistration.failedPlugin = true;
         m_audioPluginRegistration.failCode = !args1.empty() ? args1[0].toInt() : -1;
+    }
+
+    // Tuning
+    if (m_parser.isSet("tuning-file")) {
+        m_options.tuning.tuningFile = fromUserInputPath(m_parser.value("tuning-file"));
     }
 
     // Converter mode

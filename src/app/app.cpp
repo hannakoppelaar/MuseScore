@@ -390,6 +390,10 @@ void App::applyCommandLineOptions(const CommandLineParser::Options& options, fra
     notationConfiguration()->setTemplateModeEnabled(options.notation.templateModeEnabled);
     notationConfiguration()->setTestModeEnabled(options.notation.testModeEnabled);
 
+    if (options.tuning.tuningFile.has_value()) {
+         tuningConfiguration()->init(options.tuning.tuningFile.value());
+    }
+
     if (runMode == framework::IApplication::RunMode::ConsoleApp) {
         project::MigrationOptions migration;
         migration.appVersion = mu::engraving::Constants::MSC_VERSION;

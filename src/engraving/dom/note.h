@@ -37,6 +37,8 @@
 #include "symbol.h"
 #include "types.h"
 
+#include "playback/tuning/ituningconfiguration.h"
+
 namespace mu::engraving {
 class Factory;
 class Tie;
@@ -62,6 +64,7 @@ static constexpr int MAX_DOTS = 4;
 //--------------------------------------------------------------------------------
 class LineAttachPoint
 {
+
 public:
     LineAttachPoint(EngravingItem* l, double x, double y)
         : m_line(l), m_pos(PointF(x, y)) {}
@@ -150,6 +153,8 @@ static const int INVALID_LINE = -10000;
 
 class Note final : public EngravingItem
 {
+
+    INJECT(engraving::tuning::ITuningConfiguration, tuningConfiguration)
     OBJECT_ALLOCATOR(engraving, Note)
     DECLARE_CLASSOF(ElementType::NOTE)
 

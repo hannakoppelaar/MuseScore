@@ -52,6 +52,10 @@ public:
         } notation;
 
         struct {
+            std::optional<io::path_t> tuningFile;
+        } tuning;
+
+        struct {
             std::optional<bool> fullMigration;
         } project;
 

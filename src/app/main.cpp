@@ -116,6 +116,8 @@
 #include "diagnostics/diagnosticsmodule.h"
 #include "engraving/engravingmodule.h"
 
+#include "playback/tuning/tuningmodule.h"
+
 #ifdef MUE_BUILD_IMPORTEXPORT_MODULE
 #include "importexport/musicxml/musicxmlmodule.h"
 #include "importexport/bb/bbmodule.h"
@@ -298,6 +300,8 @@ int main(int argc, char** argv)
 #endif
 
     app.addModule(new mu::engraving::EngravingModule());
+
+    app.addModule(new mu::engraving::tuning::TuningModule());
 
 #ifdef MUE_BUILD_IMPORTEXPORT_MODULE
     app.addModule(new mu::iex::bb::BBModule());
