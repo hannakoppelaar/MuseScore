@@ -26,6 +26,7 @@
 #include "ituningconfiguration.h"
 #include "io/path.h"
 #include "dom/types.h"
+#include <QJsonValue>
 
 namespace mu::engraving::tuning {
 class TuningConfiguration : public ITuningConfiguration
@@ -37,10 +38,12 @@ public:
     std::string getName() const override { return "31-EDO"; };
     double getOffset (int pitch, int tpc, int accidentalType) const override;
 private:
+    double parseScalaValue(QJsonValue scalaValueJson);
+    int getNominal(int index);
+
     bool m_valid = false;
     std::map<int, double> m_nominalOffsetMap;
     std::map<int, double> m_accidentalOffsetMap;
-
 
     // maps nominals to a map of accidentals to offsets
     std::map<int, std::map<int, double>> m_offsetMap;

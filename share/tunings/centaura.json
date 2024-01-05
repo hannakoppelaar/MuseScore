@@ -1,0 +1,15 @@
+{
+
+	"name": "Centaura",
+	"description": "Minimal mapping of Kraig Grady's twelve-note Centaura tuning, supporting only half sharps and flats",
+	"map": 
+	[
+		{"NONE": "2/1", "SHARP_SLASH": "33/32"},
+		{"NONE": "9/8"},
+		{"NONE": "5/4", "FLAT": "7/6"},
+		{"NONE": "4/3", "SHARP_SLASH": "11/8"},
+		{"NONE": "3/2"},
+		{"NONE": "5/3", "FLAT": "14/9"},
+		{"NONE": "15/8", "FLAT": "7/4"}
+	]
+}
