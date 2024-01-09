@@ -106,8 +106,9 @@ if (MUE_BUILD_WORKSPACE_MODULE)
     add_subdirectory(workspace)
 endif()
 
-# Stubs
 add_subdirectory(stubs)
+
+add_subdirectory(tuning)
 
 if (OS_IS_WASM)
     add_subdirectory(wasmtest)

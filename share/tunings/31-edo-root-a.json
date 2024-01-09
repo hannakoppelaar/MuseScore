@@ -1,6 +1,7 @@
 {
 	"name": "31-EDO",
-	"description":"Mapping of 31-EDO that supports both the circle-of-fifths notation and the neutral circle-of-fifths notation",
+	"description":"Mapping of 31-EDO that supports both the circle-of-fifths notation and the neutral circle-of-fifths notation. Midi note 69 will coincide with the 6th nominal (A), making sure the A4 in this tuning is 440 Hz.",
+	"root": [5, 69],
 	"map": [
 		{
 			"NONE":1200.000000,

@@ -5,7 +5,7 @@
  * MuseScore
  * Music Composition & Notation
  *
- * Copyright (C) 2021 MuseScore BVBA and others
+ * Copyright (C) 2023 MuseScore BVBA and others
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 3 as
@@ -19,26 +19,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#ifndef MU_ENGRAVING_TUNING_TUNINGMODULE_H
-#define MU_ENGRAVING_TUNING_TUNINGMODULE_H
 
-#include <memory>
+#include "modularity/ioc.h"
+#include "tuningmodule.h"
+#include "tuningconfiguration.h"
 
-#include "modularity/imodulesetup.h"
+using namespace mu::tuning;
 
-namespace mu::engraving::tuning {
-class TuningConfiguration;
-class TuningModule : public modularity::IModuleSetup
-{
-public:
-
-    std::string moduleName() const override;
-    void registerExports() override;
-
-private:
-    std::shared_ptr<TuningConfiguration> m_configuration;
-};
+std::string mu::tuning::TuningModule::moduleName() const {
+    return "tuning";
 }
 
-#endif
+void TuningModule::registerExports()
+{
+    m_configuration = std::make_shared<TuningConfiguration>();
+
+    modularity::ioc()->registerExport<ITuningConfiguration>(moduleName(), m_configuration);
+}
+
 

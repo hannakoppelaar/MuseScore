@@ -19,13 +19,13 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-#ifndef MU_ENGRAVING_TUNING_ITUNINGCONFIGURATION_H
-#define MU_ENGRAVING_TUNING_ITUNINGCONFIGURATION_H
+#ifndef MU_TUNING_ITUNINGCONFIGURATION_H
+#define MU_TUNING_ITUNINGCONFIGURATION_H
 
 #include "modularity/imoduleinterface.h"
 #include "io/path.h"
 
-namespace mu::engraving::tuning {
+namespace mu::tuning {
 class ITuningConfiguration : MODULE_EXPORT_INTERFACE
 {
     INTERFACE_ID(ITuningConfiguration)

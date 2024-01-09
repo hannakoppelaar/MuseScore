@@ -1,0 +1,16 @@
+{
+	"name": "Bohlen-Pierce JI",
+	"description": "Mapping for the Bohlen-Pierce JI scale using 9 nominals",
+	"map":
+	[
+		{"NONE": "3/1"},
+		{"NONE": "25/21", "FLAT": "27/25"},
+		{"NONE": "9/7"},
+		{"NONE": "7/5"},
+		{"NONE": "5/3", "FLAT": "75/49"},
+		{"NONE": "9/5"},
+		{"NONE": "15/7", "FLAT": "49/25"},
+		{"NONE": "7/3"},
+		{"NONE": "25/9", "FLAT": "63/25"}
+	]
+}

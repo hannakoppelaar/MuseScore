@@ -37,7 +37,7 @@
 #include "symbol.h"
 #include "types.h"
 
-#include "playback/tuning/ituningconfiguration.h"
+#include "tuning/ituningconfiguration.h"
 
 namespace mu::engraving {
 class Factory;
@@ -154,7 +154,7 @@ static const int INVALID_LINE = -10000;
 class Note final : public EngravingItem
 {
 
-    INJECT(engraving::tuning::ITuningConfiguration, tuningConfiguration)
+    INJECT(tuning::ITuningConfiguration, tuningConfiguration)
     OBJECT_ALLOCATOR(engraving, Note)
     DECLARE_CLASSOF(ElementType::NOTE)
 

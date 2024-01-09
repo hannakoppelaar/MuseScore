@@ -45,7 +45,7 @@
 #include "importexport/audioexport/iaudioexportconfiguration.h"
 #include "importexport/videoexport/ivideoexportconfiguration.h"
 #include "importexport/guitarpro/iguitarproconfiguration.h"
-#include "playback/tuning/ituningconfiguration.h"
+#include "tuning/ituningconfiguration.h"
 
 #include "commandlineparser.h"
 
@@ -69,7 +69,7 @@ class App
     INJECT(iex::audioexport::IAudioExportConfiguration, audioExportConfiguration)
     INJECT(iex::videoexport::IVideoExportConfiguration, videoExportConfiguration)
     INJECT(iex::guitarpro::IGuitarProConfiguration, guitarProConfiguration)
-    INJECT(engraving::tuning::ITuningConfiguration, tuningConfiguration)
+    INJECT(tuning::ITuningConfiguration, tuningConfiguration)
 
 public:
     App();

@@ -2396,19 +2396,17 @@ int Note::playingOctave() const
 
 double Note::playingTuning() const
 {
-    if (tuningConfiguration()->valid()) {
+    if (tuningConfiguration() && tuningConfiguration()->valid()) {
         if (!m_accidental) {
             return m_tuning + tuningConfiguration()->getOffset(ppitch(), tpc1(), (int)AccidentalType::NONE);
-        } else {
-            return m_tuning + tuningConfiguration()->getOffset(ppitch(), tpc1(), (int)m_accidental->accidentalType());
         }
-    } else {
-        if (!m_accidental) {
-            return m_tuning;
-        }
-
-        return m_tuning + Accidental::subtype2centOffset(m_accidental->accidentalType());
+        return m_tuning + tuningConfiguration()->getOffset(ppitch(), tpc1(), (int)m_accidental->accidentalType());
     }
+    if (!m_accidental) {
+        return m_tuning;
+    }
+
+    return m_tuning + Accidental::subtype2centOffset(m_accidental->accidentalType());
 }
 
 //---------------------------------------------------------

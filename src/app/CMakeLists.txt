@@ -150,6 +150,7 @@ set(LINK_LIB
     instrumentsscene
     vst
     update
+    tuning
     )
 
 if (MUE_BUILD_UI_MODULE)

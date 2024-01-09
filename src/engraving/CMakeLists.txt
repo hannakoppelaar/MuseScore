@@ -250,11 +250,6 @@ set(MODULE_SRC
     ${CMAKE_CURRENT_LIST_DIR}/playback/filters/spannerfilter.h
     ${CMAKE_CURRENT_LIST_DIR}/playback/filters/internal/tremolofilter.cpp
     ${CMAKE_CURRENT_LIST_DIR}/playback/filters/internal/tremolofilter.h
-    ${CMAKE_CURRENT_LIST_DIR}/playback/tuning/ituningconfiguration.h
-    ${CMAKE_CURRENT_LIST_DIR}/playback/tuning/tuningconfiguration.h
-    ${CMAKE_CURRENT_LIST_DIR}/playback/tuning/tuningconfiguration.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/playback/tuning/tuningmodule.cpp
-    ${CMAKE_CURRENT_LIST_DIR}/playback/tuning/tuningmodule.h
     ${CMAKE_CURRENT_LIST_DIR}/playback/utils/pitchutils.h
     ${CMAKE_CURRENT_LIST_DIR}/playback/utils/expressionutils.h
     ${CMAKE_CURRENT_LIST_DIR}/playback/utils/arrangementutils.h
