@@ -140,7 +140,10 @@ void TuningConfiguration::init(const mu::io::path_t& tuningFile)
         int nominalIndex = (firstNominalIndex + i) % numNominals;
         int nominal = getNominal(nominalIndex);
         int midiNominal = getNominal(i);
-        double nominalScalaValue = scalaMap.at(nominal).at(m_accidentalNameMap.at("NONE"));
+        double nominalScalaValue = nominal * 100; // if this nominal is not part of the tuning, use the 12-EDO value
+        if (scalaMap.at(nominal).find(m_accidentalNameMap.at("NONE")) != scalaMap.at(nominal).end()) {
+            nominalScalaValue = scalaMap.at(nominal).at(m_accidentalNameMap.at("NONE"));
+        }
         if (nominalIndex == 0) {
             nominalScalaValue = 0;
             if (initialPeriod) {
@@ -152,10 +155,9 @@ void TuningConfiguration::init(const mu::io::path_t& tuningFile)
         double nominalOffset = (periodOffset + nominalScalaValue - midiNominal * 100) + rootOffset;
         std::map<int, double> accidentalMap;
         m_offsetMap[midiNominal] = accidentalMap;
+        m_offsetMap.at(midiNominal)[m_accidentalNameMap.at("NONE")] = nominalOffset;
         foreach(std::pair accidental, scalaMap.at(nominal)) {
-            if (accidental.first == m_accidentalNameMap.at("NONE")) {
-                m_offsetMap.at(midiNominal)[m_accidentalNameMap.at("NONE")] = nominalOffset;
-            } else {
+            if (accidental.first != m_accidentalNameMap.at("NONE")) {
                 m_offsetMap.at(midiNominal)[accidental.first] = accidental.second - nominalScalaValue;
             }
         }

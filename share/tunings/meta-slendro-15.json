@@ -1,0 +1,15 @@
+{
+	"name": "Meta-slendro 15",
+	"description": "Mapping of a 15-note meta-slendro using 53-EDO ups/downs notation.",
+	"map":
+	[
+		{"NONE": "2/1", "NATURAL_TWO_ARROWS_UP": "37/36"},
+		{"FLAT": "151/144"},
+		{"FLAT_ONE_ARROW_DOWN": "7/6", "FLAT_ONE_ARROW_UP": "43/36", "FLAT_TWO_ARROWS_UP": "351/288"},
+		{"NONE": "4/3", "NATURAL_TWO_ARROWS_UP": "49/36", "SHARP_TWO_ARROWS_DOWN": "25/18"},
+		{"SHARP_TWO_ARROWS_DOWN": "14/9", "SHARP_ONE_ARROW_DOWN": "57/36"},
+		{"FLAT_TWO_ARROWS_UP": "465/288", "FLAT_ONE_ARROW_UP": "16/9"},
+		{"FLAT_ONE_ARROW_UP": "65/36", "NATURAL_TWO_ARROWS_DOWN": "265/144"}
+	]
+}
+
